@@ -14,6 +14,7 @@ const masterSite = [
   {
     url: 'localhost:3000',
     masterSite: 'CONEX',
+    proxy: 'http://localhost:8003',
   },
 ];
 

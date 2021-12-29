@@ -1,8 +1,9 @@
 import axios from 'axios';
+import init from '../config/environment/Config';
 
 const client = axios.create();
 
-client.defaults.baseURL = process.env.REACT_APP_PROXY;
+client.defaults.baseURL = init().proxy;
 client.defaults.withCredentials = true;
 /*
   글로벌 설정 예시:

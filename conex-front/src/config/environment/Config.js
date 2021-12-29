@@ -6,6 +6,9 @@ const init = () => {
   const item = masterSite.find((item) => item.url === url);
 
   global.masterSite = item.masterSite;
+  global.proxy = item.proxy;
+
+  return item;
 };
 
 export default init;

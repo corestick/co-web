@@ -7,10 +7,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import custmomTheme from './styles/MuiTheme';
 import { changeThemeMode } from './stores/common/theme';
 
-import dotenv from 'dotenv';
 import init from './config/environment/Config';
 
-dotenv.config();
 init();
 
 const App = () => {
