@@ -1,8 +1,15 @@
 import { useRoutes } from 'react-router-dom';
 
-import eslPdaRoutes from './eslPdaRoutes';
-import LmsRoutes from './LmsRoutes';
+import MainPage from '../pages/MainPage';
+import ErrorPage from '../pages/ErrorPage';
 
-export default function ThemeRoutes() {
-  return useRoutes([eslPdaRoutes, LmsRoutes]);
+import { getRoutes } from './MenuList';
+
+export default function CombineRoutes() {
+  const routes = getRoutes();
+  return useRoutes([
+    { path: '/main', element: <MainPage /> },
+    { path: '*', element: <ErrorPage /> },
+    ...routes,
+  ]);
 }

@@ -29,15 +29,11 @@ const HeaderContainer = ({ title }) => {
     setMenuOpen(false);
   };
 
-  const menuClick = (e, id) => {
-    console.log(id);
-
-    switch (id) {
-      case '로그아웃':
-        onLogout();
-        break;
-      default:
-        break;
+  const menuClick = (e, menu) => {
+    if (menu.text === '로그아웃') {
+      onLogout();
+    } else {
+      navigate(menu.path);
     }
 
     closeMenu();

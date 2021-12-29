@@ -1,37 +1,11 @@
-const getMasterSite = () => {
-  const url = new URL(window.location.href);
+import masterSite from './MasterSite';
 
-  if (url.host.toString().indexOf('smartfactorysystem') > -1) {
-    const arr = url.host.toString().split('.');
-    return arr[0].toUpperCase();
-  }
+const init = () => {
+  const url = new URL(window.location.href).host.toString();
 
-  if (url.host.toString().indexOf('hiteco') > -1) {
-    return 'MP';
-  }
+  const item = masterSite.find((item) => item.url === url);
 
-  switch (window.location.href) {
-    case '':
-    default:
-      return 'CONEX';
-  }
+  global.masterSite = item.masterSite;
 };
 
-console.log('MasterSite', getMasterSite());
-
-const info = {
-  DEV: {
-    apiSubUrl: '',
-    subPath: '',
-    masterSite: 'CONEX',
-  },
-  CONEX: {
-    apiSubUrl: '../lms_back/',
-    subPath: '/web/lms',
-    masterSite: getMasterSite(),
-  },
-};
-
-const Config = info['DEV'];
-
-export default Config;
+export default init;

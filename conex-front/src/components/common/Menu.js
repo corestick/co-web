@@ -7,38 +7,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import LocationSearching from '@mui/icons-material/LocationSearching';
-import MoveToInbox from '@mui/icons-material/MoveToInbox';
-import Outbox from '@mui/icons-material/Outbox';
 import Close from '@mui/icons-material/Close';
 
-const Menu = ({ menuOpen, closeMenu, menuClick }) => {
-  const list1 = [
-    {
-      text: '위치찾기',
-      icon: <LocationSearching />,
-    },
-    {
-      text: '랙입고',
-      icon: <MoveToInbox />,
-    },
-    {
-      text: '랙출고',
-      icon: <Outbox />,
-    },
-  ];
+import { getMenulist } from '../../routes/MenuList';
 
-  const list2 = [
-    {
-      text: '실시간설비현황',
-      icon: <LocationSearching />,
-    },
-    {
-      text: '로그아웃',
-      icon: <AccountCircle />,
-    },
-  ];
+const Menu = ({ menuOpen, closeMenu, menuClick }) => {
+  const menuList = getMenulist();
 
   const list = () => (
     <Box
@@ -56,30 +30,17 @@ const Menu = ({ menuOpen, closeMenu, menuClick }) => {
           <Close />
         </IconButton>
       </div>
-      <Divider />
       <List>
-        {list1.map((list, index) => (
-          <ListItem
-            button
-            key={list.text}
-            onClick={(e) => menuClick(e, list.text)}
-          >
-            <ListItemIcon>{list.icon}</ListItemIcon>
-            <ListItemText primary={list.text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {list2.map((list, index) => (
-          <ListItem
-            button
-            key={list.text}
-            onClick={(e) => menuClick(e, list.text)}
-          >
-            <ListItemIcon>{list.icon}</ListItemIcon>
-            <ListItemText primary={list.text} />
-          </ListItem>
+        {menuList.map((list, index) => (
+          <div key={`Div_${index}`}>
+            {index === 0 || list.group !== menuList[index - 1].group ? (
+              <Divider />
+            ) : null}
+            <ListItem button key={index} onClick={(e) => menuClick(e, list)}>
+              <ListItemIcon>{list.icon}</ListItemIcon>
+              <ListItemText primary={list.text} />
+            </ListItem>
+          </div>
         ))}
       </List>
     </Box>

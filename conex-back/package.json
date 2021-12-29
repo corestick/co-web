@@ -1,5 +1,5 @@
 {
-  "name": "conex-api",
+  "name": "conex-back",
   "version": "0.0.1",
   "main": "app.js",
   "license": "MIT",

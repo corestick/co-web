@@ -1,9 +1,8 @@
 import axios from 'axios';
-import Config from '../config/environment/Config';
 
 const client = axios.create();
 
-client.defaults.baseURL = Config.apiSubUrl;
+client.defaults.baseURL = process.env.REACT_APP_PROXY;
 client.defaults.withCredentials = true;
 /*
   글로벌 설정 예시:

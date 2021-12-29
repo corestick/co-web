@@ -16,6 +16,13 @@ const FacilityStatusContainer = () => {
     setDateTime(new Date());
   }, []);
 
+  useEffect(() => {
+    const timer = setTimeout(setTime, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [dateTime, setTime]);
+
   const getData = useCallback(() => {
     if (global.masterSite) {
       dispatch(
@@ -28,17 +35,17 @@ const FacilityStatusContainer = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setInterval(setTime, 1000);
-  }, [setTime]);
-
-  useEffect(() => {
     getData();
-    setInterval(getData, 10000);
   }, [getData]);
 
-  //useEffect(() => {
-  //  console.log('facilityStatusData', facilityStatusData);
-  //}, [facilityStatusData]);
+  useEffect(() => {
+    console.log(new Date());
+    const timer = setTimeout(getData, 15000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [facilityStatusData, getData]);
 
   return (
     <FacilityStatus

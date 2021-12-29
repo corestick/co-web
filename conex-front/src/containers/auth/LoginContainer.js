@@ -5,7 +5,7 @@ import { changeField, initializeForm, login } from '../../stores/auth/auth';
 import LoginForm from '../../components/auth/LoginForm';
 import { check } from '../../stores/auth/user';
 import UtilContainer from '../common/UtilContainer';
-import crypto from 'crypto';
+import crypto from 'crypto-browserify';
 
 const LoginContainer = () => {
   const [error, setError] = useState(null);
@@ -59,7 +59,7 @@ const LoginContainer = () => {
         );
       }
 
-      navigate('/facilitystatus');
+      navigate('/main');
       try {
         localStorage.setItem('user', JSON.stringify(user));
       } catch (e) {
